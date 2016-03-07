@@ -17,16 +17,26 @@ public class HorseWalk : MonoBehaviour {
         //walk_Speed = move.z;
     }
 
-        // Update is called once per frame
-        void Update () {
-        Vector3 walk_Speed =  transform.parent.gameObject.GetComponent<Rigidbody>().velocity;
-        if (walk_Speed.z < 0.0)
-        {
-            animator.SetFloat("walk_Speed", -1*(walk_Speed.z), 0.05f, Time.deltaTime);
-        }
-        else {
-            animator.SetFloat("walk_Speed", walk_Speed.z, 0.05f, Time.deltaTime);
-        }
-
-    }
+	// Update is called once per frame
+	void Update () {
+		Vector3 walk_Speed =  transform.parent.gameObject.GetComponent<Rigidbody>().velocity;
+		if (walk_Speed.z < 0.0) {
+			animator.SetFloat ("walk_Speed", -1 * (walk_Speed.z), 0.05f, Time.deltaTime);
+			GameObject HorseWalkAudio = GameObject.Find ("HorseWalkAudio");
+			if (!HorseWalkAudio.GetComponent<AudioSource> ().isPlaying) {
+				HorseWalkAudio.GetComponent<AudioSource> ().Play ();
+			}
+		} else if (walk_Speed.z > 0.0) {
+			animator.SetFloat ("walk_Speed", walk_Speed.z, 0.05f, Time.deltaTime);
+			GameObject HorseWalkAudio = GameObject.Find ("HorseWalkAudio");
+			if (!HorseWalkAudio.GetComponent<AudioSource> ().isPlaying) {
+				HorseWalkAudio.GetComponent<AudioSource> ().Play ();
+			}
+		} else if (walk_Speed.z == 0) {
+			GameObject HorseWalkAudio = GameObject.Find ("HorseWalkAudio");
+			//if (HorseWalkAudio.GetComponent<AudioSource> ().isPlaying) {
+			HorseWalkAudio.GetComponent<AudioSource> ().Stop ();
+			//}
+		}
+	}
 }

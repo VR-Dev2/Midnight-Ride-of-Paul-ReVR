@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Lights1
+  - Lights2
+  - Lights3
+  - House1
+  - House2
+  - House3
+  - Lights4
+  - Lights5
+  - Lights6
+  - Lights
   layers:
   - Default
   - TransparentFX
